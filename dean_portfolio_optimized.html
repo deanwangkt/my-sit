@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>dean</title>
+  <meta name="description" content="Notes on building — writing and links." />
+  <meta property="og:title" content="dean" />
+  <meta property="og:description" content="Notes on building — writing and links." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌙</text></svg>">
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --fg: #e8ebf0;
+      --muted: #9aa3ae;
+      --link: #e8ebf0;
+      --link-hover: #ffffff;
+      --border: #151922;
+      --hover-bg: rgba(255,255,255,0.03);
+      --hairline: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.00));
+      --max: 700px;
+      --serif: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      --mono: "Roboto Mono", "SF Mono", Monaco, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    :root, html { color-scheme: dark; }
+    html {
+      margin: 0;
+      background-color: var(--bg);
+      min-height: 100%;
+    }
+    body {
+      margin: 0;
+      color: var(--fg);
+      background:
+        radial-gradient(1200px 700px at 75% -10%, rgba(255,255,255,0.06), rgba(0,0,0,0)),
+        radial-gradient(900px 560px at 30% 110%, rgba(255,255,255,0.045), rgba(0,0,0,0) 60%);
+      background-repeat: no-repeat;
+      background-color: transparent;
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.65;
+      letter-spacing: -0.01em;
+      font-weight: 500;
+      -webkit-font-smoothing: antialiased;
+      font-kerning: normal;
+      font-optical-sizing: auto;
+      text-rendering: optimizeLegibility;
+      min-height: 100%;
+    }
+    ::selection { background: rgba(255,255,255,0.12); }
+    a {
+      color: var(--link);
+      text-decoration: none;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 0.06em;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+    a:hover { 
+      text-decoration: underline; 
+      color: var(--link-hover);
+      opacity: 0.96; 
+    }
+    a:focus { 
+      outline: 1.5px dashed rgba(255,255,255,0.35); 
+      outline-offset: 2px; 
+    }
+
+    .wrap { 
+      max-width: var(--max); 
+      margin: 0 auto; 
+      padding: 48px 20px 90px; 
+    }
+    header { margin-bottom: 22px; }
+    .name { 
+      font-family: var(--sans); 
+      font-size: 38px; 
+      font-weight: 700; 
+      margin: 0 0 14px; 
+      letter-spacing: -0.03em; 
+      text-transform: lowercase; 
+    }
+    .rule { 
+      height: 1px; 
+      background: var(--hairline); 
+      margin: 24px 0; 
+    }
+    h2 { 
+      font-family: var(--sans); 
+      font-size: 15px; 
+      letter-spacing: 0.08em; 
+      text-transform: uppercase; 
+      color: var(--muted); 
+      margin: 22px 0 10px;
+      font-weight: 600;
+    }
+    ul { 
+      list-style: none; 
+      padding: 0; 
+      margin: 0; 
+    }
+    li { 
+      padding: 10px 0; 
+      border-bottom: 1px solid var(--border); 
+      display: flex; 
+      justify-content: space-between; 
+      gap: 12px;
+      transition: background-color 0.2s ease;
+      border-radius: 4px;
+      margin: 0 -8px;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+    li:hover {
+      background-color: var(--hover-bg);
+    }
+    .meta { 
+      color: var(--muted); 
+      white-space: nowrap; 
+      font-family: var(--mono); 
+      font-size: 12px; 
+      letter-spacing: 0.2px; 
+    }
+    .mono { 
+      font-family: var(--mono); 
+      font-size: 14px; 
+      color: var(--muted);
+      font-weight: 500;
+    }
+    footer { 
+      margin-top: 38px; 
+      color: var(--muted); 
+      font-size: 14px; 
+    }
+    .bio p { margin: 10px 0; line-height: 1.8; }
+    .btn-link { 
+      background: none; 
+      border: 0; 
+      padding: 0; 
+      margin-top: 12px; 
+      color: var(--link); 
+      cursor: pointer; 
+      font: inherit; 
+      font-family: var(--sans); 
+      text-decoration: underline; 
+      text-underline-offset: 2px;
+      transition: opacity 0.2s ease;
+    }
+    .btn-link:hover { opacity: 0.9; }
+    .hidden { display: none; }
+
+    .post-view { margin-top: 8px; }
+    .post-title { 
+      font-family: var(--serif); 
+      font-size: 28px; 
+      margin: 0 0 6px; 
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+    .post-meta { 
+      color: var(--muted); 
+      margin: 0 0 20px; 
+      font-size: 12.5px; 
+    }
+    .back { 
+      display: inline-block; 
+      margin-bottom: 12px;
+      transition: opacity 0.2s ease;
+    }
+    .back:hover { opacity: 0.8; }
+    
+    .prose p { 
+      margin: 16px 0; 
+      font-family: var(--serif); 
+    }
+    .prose h3 { 
+      font-family: var(--sans); 
+      font-size: 19px; 
+      margin: 24px 0 12px;
+      font-weight: 700;
+    }
+    .prose ul, .prose ol { 
+      margin: 12px 0;
+      padding-left: 24px;
+    }
+    .prose ul { list-style: disc; }
+    .prose ol { list-style: decimal; }
+    .prose li {
+      margin: 6px 0;
+      padding: 0;
+      border: none;
+      display: list-item;
+    }
+    .prose li:hover {
+      background: none;
+    }
+    .prose code { 
+      font-family: var(--mono); 
+      font-size: 13px; 
+      background: rgba(255,255,255,0.06); 
+      padding: 2px 5px; 
+      border-radius: 4px; 
+    }
+    .prose .media { margin: 12px 0; }
+    .prose img { 
+      max-width: 100%; 
+      height: auto; 
+      border-radius: 6px; 
+      border: 1px solid var(--border); 
+    }
+    .prose strong {
+      font-weight: 700;
+      color: var(--fg);
+    }
+
+    @media (max-width: 640px) {
+      body { font-size: 16px; line-height: 1.7; }
+      .wrap { padding: 36px 16px 70px; }
+      .name { font-size: 24px; }
+      .post-title { font-size: 22px; }
+      h2 { font-size: 14px; }
+    }
+
+    @media (max-width: 420px) { 
+      .meta { display: none; }
+      li { margin: 0 -4px; padding-left: 4px; padding-right: 4px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1 class="name">dean</h1>
+      <div class="bio">
+        <p>I'm a cofounder at a stealth co. building agentic AI infra.<br/>Our interface has processed 1T+ tokens, and we collaborate with university labs.</p>
+        <p>Outside AI, I run a crypto prop trading desk (since 2022) focused on arbitrage and news.<br/>We deploy $15M+ in firm capital and are among the fastest on token listing alerts.</p>
+        <p>Previously: UIUC CS. NCSA research assistant in distributed systems. Helped maintain <a href="https://ncsa.illinois.edu/research/project-highlights/blue-waters/" target="_blank" rel="noopener">Blue Waters</a>.</p>
+      </div>
+      <div class="rule"></div>
+    </header>
+
+    <section id="writing">
+      <h2>Writing</h2>
+      <ul>
+        <li>
+          <a href="#" data-post="curve-v1-parametric-error" data-title="Share an error in Curve v1's parametric curves" data-meta="2022-06-15 · 5 min">Share an error in Curve v1's parametric curves</a>
+          <span class="meta">2022-06-15 · 5 min</span>
+        </li>
+        <li>
+          <a href="#" data-post="stepn-mechanics" data-title="The Underlying Mechanics of STEPN's Growth" data-meta="2023-02-25 · 6 min">The Underlying Mechanics of STEPN's Growth</a>
+          <span class="meta">2023-02-25 · 6 min</span>
+        </li>
+        <li>
+          <a href="#" data-post="agents-over-apps" data-title="Agents over apps" data-meta="2025-08-07 · 6 min">Agents over apps</a>
+          <span class="meta">2025-08-07 · 6 min</span>
+        </li>
+        <li>
+          <a href="#" data-post="token-incentives" data-title="Designing token incentives that don't break" data-meta="2025-07-03 · 7 min">Designing token incentives that don't break</a>
+          <span class="meta">2025-07-03 · 7 min</span>
+        </li>
+        <li class="more hidden">
+          <a href="#" data-post="agents-data" data-title="What data do agents really need?" data-meta="2025-06-10 · 5 min">What data do agents really need?</a>
+          <span class="meta">2025-06-10 · 5 min</span>
+        </li>
+        <li class="more hidden">
+          <a href="#" data-post="agentic-stack" data-title="A practical stack for agentic infra" data-meta="2025-05-18 · 8 min">A practical stack for agentic infra</a>
+          <span class="meta">2025-05-18 · 8 min</span>
+        </li>
+        <li class="more hidden">
+          <a href="#" data-post="incentives-reliability" data-title="On incentives and reliability" data-meta="2025-04-02 · 6 min">On incentives and reliability</a>
+          <span class="meta">2025-04-02 · 6 min</span>
+        </li>
+      </ul>
+      <button id="toggle" class="btn-link" aria-expanded="false" aria-controls="writing">Show more</button>
+    </section>
+
+    <section id="post" class="post-view hidden" aria-live="polite">
+      <a href="#" id="back" class="mono back">← back</a>
+      <h1 id="post-title" class="post-title"></h1>
+      <p id="post-meta" class="post-meta"></p>
+      <article id="post-content" class="prose"></article>
+      <div class="rule" style="margin-top:28px"></div>
+    </section>
+
+    <template id="tpl-curve-v1-parametric-error">
+      <p><strong>TL;DR.</strong> The public Desmos graph many people use for Curve leaves out an <em>N<sup>N</sup></em> factor in the constant compared to the whitepaper. If you read exchange rates from that graph, you will <em>underestimate</em> curvature and pick an <em>A</em> that is too small. On-chain, <code>get_y</code> is <em>solving</em> the invariant (Newton iteration); it is not redefining the constant.</p>
+      
+      <h3>Motivation — why it matters</h3>
+      <ul>
+        <li>Wrong <em>A</em> → wrong slippage expectations under imbalance, misplaced alerts/hedges, and bad liquidity incentives.</li>
+        <li>When N&gt;2, the gap grows quickly because the missing factor is <em>N<sup>N</sup></em>.</li>
+      </ul>
+      
+      <h3>What the contract actually solves</h3>
+      <p>Let <em>N</em> be the number of coins and <em>x<sub>1</sub>,…,x<sub>N</sub></em> their balances. The invariant <em>D</em> is computed via <code>get_D(x, A)</code>. When swapping into coin <em>j</em>, the contract solves for the new balance <em>y</em> of coin <em>j</em> so that the invariant holds for <em>(x<sub>1</sub>,…,x<sub>j-1</sub>, y, x<sub>j+1</sub>,…,x<sub>N</sub>)</em>.</p>
+      
+      <p>Define</p>
+      <p>$$ S' = \sum_{k\ne j} x_k,\qquad P' = \prod_{k\ne j} x_k. $$</p>
+      
+      <p>Keeping <em>D</em> fixed, the update in the unknown <em>y</em> reduces at each Newton step to a quadratic</p>
+      <p>$$ y^2 + b\,y = c, $$</p>
+      
+      <p>where <em>b</em> and <em>c</em> are deterministic functions of \(D, A, N, S', P'\) (as in <code>get_y</code>). The positive root gives the next iterate for <em>y</em>. This is why the implementation line you saw is from a <em>solver</em>, not a symbolic invariant.</p>
+      
+      <h3>Why the Desmos curve is off</h3>
+      <p>The Desmos setup drops <em>N<sup>N</sup></em> in the constant term—effectively a rescaling that flattens the curve. If you try to match on-chain behavior with that graph, you must multiply the <em>A</em> you read off (roughly) by more than <em>N</em>. Example (N=2): with \(K = \tfrac{2Axy}{D^2} = \tfrac{200xy}{D^2}\), the local slope crosses about \(-1.008\) near \(x=0.33D\).</p>
+      
+      <h3>Quick calibration recipe</h3>
+      <ol>
+        <li>Pick the target imbalance point (e.g., \(x=0.33D\)) and your pool size <em>N</em>.</li>
+        <li>Compute on-chain (or in your sim) using <code>get_D</code> then <code>get_y</code> to get the slope at that point.</li>
+        <li>In Desmos, either multiply the constant by <em>N<sup>N</sup></em>, or—if you can only tweak <em>A</em>—scale <em>A</em> upwards until the slope matches the on-chain slope.</li>
+      </ol>
+    </template>
+
+    <template id="tpl-stepn-mechanics">
+      <p><strong>Many people lump STEPN with P2E and a wave of rushed "Move to Earn" clones. That framing misses what makes STEPN distinct.</strong></p>
+      
+      <h3>STEPN vs. GameFi</h3>
+      <p>Is STEPN a game? In Sid Meier's words, "a game is a series of interesting choices." Repairing and upgrading scarce GST, deciding whether to fuse gems, opening or selling mystery boxes—these are all choices.</p>
+      
+      <p>But STEPN does not need to be a game in the traditional sense. It is strategic without immersion, cut-scenes, or high-fidelity art. That is a feature, not a bug. Games compete on intrinsic fun. Fitness products sell external incentives and accountability.</p>
+      
+      <p>In P2E, players often show up to make money, not for joy. When novelty fades, intrinsic motivation collapses and churn spikes. STEPN inverts this: external incentives help users build a durable exercise habit. Daily output caps and a long arc of goals nudge consistent behavior rather than bingeing.</p>
+      
+      <p>I love <em>Ring Fit Adventure</em> and <em>Just Dance</em>, but once "finished," my motivation dropped. With STEPN I have kept going for three months and counting, because the system layers short, mid, and long-term objectives. As Sid Meier's <em>Civilization</em> design philosophy puts it, the best systems always leave you with something to anticipate.</p>
+      
+      <p>If you still compare STEPN to <em>Axie Infinity</em>, look at the user structure. There are no guilds, no live rental market; NFT holders are the actual users. The team even reintroduced invite codes to throttle growth and protect the economy. In many P2E ecosystems, asset owners and players are split: surveys have shown low overlap between <em>Axie</em> players and AXS holders, and titles like <em>Pegaxy</em> concentrated ownership in guilds. Not everyone likes to play P2E. Nearly everyone can go for a walk.</p>
+      
+      <h3>STEPN vs. SocialFi</h3>
+      <p>SocialFi has struggled: porting social graphs is hard and token incentives are often misaligned or unnecessary. STEPN sidesteps this. The app plays like a single-player loop, but strategy talk, randomness (opening boxes), and meta discussions create organic social energy outside the client. Think of esports metas or the <em>Elden Ring</em> discourse—community forms around systems, not feed mechanics.</p>
+      
+      <p>It is also mainstream-friendly. STEPN ties to real-world relationships and health, so clusters form naturally among friends and family. Even in the worst case, it is easier to recommend a green fitness app than a collectible monster game.</p>
+      
+      <h3>STEPN vs. Move to Earn</h3>
+      <p>Comparable fitness apps split into two groups:</p>
+      <ul>
+        <li>Apps that require external hardware</li>
+        <li>Apps that do not</li>
+      </ul>
+      
+      <p>Hardware limits adoption. <em>Ring Fit</em> needs both a Switch and a Ring-Con; <em>Just Dance</em> leverages a phone gyroscope and goes cross-platform, which helps explain the sales gap.</p>
+      
+      <p>Among hardware-free apps, STEPN's edge is verification. GPS and motion signals let the system cross-check movement, user state, and outcomes. Without credible proof of movement, fair "earn" is impossible.</p>
+      
+      <p>Anti-botting is a moving target. The durable moat is not any single rule, but a fast, decisive team that treats integrity as a product surface.</p>
+      
+      <p>STEPN is less "GameFi with steps" and more a habit engine with incentives and proof of movement. That positioning creates a different user structure, a healthier economy, and a clearer path to mainstream retention.</p>
+    </template>
+
+    <template id="tpl-agents-over-apps">
+      <p>Agents aren't apps with chat. They're <em>autonomous workflows</em> with verifiable edges: tools, data, and policy.</p>
+      <p>Ship a boring agent that resolves 1 real ticket/day. Scale later.</p>
+    </template>
+
+    <template id="tpl-token-incentives">
+      <p>Most token designs fail because they subsidize usage without earning <em>retained utility</em>. Start with the unit loop, not the ticker.</p>
+    </template>
+
+    <template id="tpl-agents-data">
+      <p>Agents need <em>reliable</em> signals, not just more data. Latency and freshness beat size in live markets.</p>
+    </template>
+
+    <template id="tpl-agentic-stack">
+      <p>Stack: inference gateway → memory store → tool router → policy layer. Debug with <code>trace_id</code> everywhere.</p>
+    </template>
+
+    <template id="tpl-incentives-reliability">
+      <p>Reliability is an incentive problem. Make failure <em>expensive</em> for the system before it's expensive for the user.</p>
+    </template>
+
+    <footer>
+      <div class="rule" style="margin-top:28px"></div>
+      <p class="mono">Elsewhere → <a href="https://x.com/deankepler" target="_blank" rel="noopener">Twitter(x)</a>, <a href="https://t.me/deawonii" target="_blank" rel="noopener">Telegram</a></p>
+      <div class="rule"></div>
+    </footer>
+  </main>
+  
+  <script>
+    const btn = document.getElementById('toggle');
+    const moreItems = document.querySelectorAll('#writing .more');
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      moreItems.forEach(li => li.classList.toggle('hidden'));
+      btn.setAttribute('aria-expanded', String(!expanded));
+      btn.textContent = expanded ? 'Show more' : 'Show less';
+    });
+
+    const listView = document.getElementById('writing');
+    const postView = document.getElementById('post');
+    const postTitle = document.getElementById('post-title');
+    const postMeta = document.getElementById('post-meta');
+    const postContent = document.getElementById('post-content');
+    const back = document.getElementById('back');
+
+    function openPost(slug, title, meta){
+      const tpl = document.getElementById('tpl-' + slug);
+      if(!tpl){ return; }
+      postTitle.textContent = title || '';
+      postMeta.textContent = meta || '';
+      postContent.innerHTML = tpl.innerHTML;
+      listView.classList.add('hidden');
+      postView.classList.remove('hidden');
+      history.pushState({view:'post', slug}, '', '#' + slug);
+      window.scrollTo({top:0, behavior:'smooth'});
+      if(window.MathJax && window.MathJax.typesetPromise){
+        window.MathJax.typesetPromise([postContent]);
+      }
+    }
+    
+    function backToList(){
+      postView.classList.add('hidden');
+      listView.classList.remove('hidden');
+      history.pushState({view:'list'}, '', location.pathname);
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    listView.addEventListener('click', (e)=>{
+      const a = e.target.closest('a[data-post]');
+      if(!a) return;
+      e.preventDefault();
+      openPost(a.dataset.post, a.dataset.title, a.dataset.meta);
+    });
+
+    back.addEventListener('click', (e)=>{ e.preventDefault(); backToList(); });
+
+    function initFromHash(){
+      const slug = location.hash.replace('#','');
+      if(!slug) return;
+      const anchor = document.querySelector(`[data-post="${slug}"]`);
+      if(anchor){ 
+        setTimeout(() => openPost(slug, anchor.dataset.title, anchor.dataset.meta), 100);
+      }
+    }
+    
+    window.addEventListener('popstate', ()=>{
+      if(location.hash){ initFromHash(); } else { backToList(); }
+    });
+    
+    initFromHash();
+  </script>
+  
+  <script>
+    window.MathJax = { 
+      tex: { 
+        inlineMath: [['$','$'], ['\\(','\\)']], 
+        displayMath: [['$$','$$']] 
+      }, 
+      options: { 
+        skipHtmlTags: ['script','noscript','style','textarea','pre','code'] 
+      },
+      startup: {
+        pageReady: () => {
+          return MathJax.startup.defaultPageReady();
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</body>
+</html>
