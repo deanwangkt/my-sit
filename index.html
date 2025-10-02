@@ -245,7 +245,7 @@
 <body>
   <main class="wrap">
     <header>
-      <h1 class="name">dean</h1>
+      <h1 class="name">Hi, I'm dean</h1>
       <div class="bio">
         <p>I'm a cofounder at a stealth co. building agentic AI infra.<br/>Our interface has processed 1T+ tokens, and we collaborate with university labs.</p>
         <p>Outside AI, I run a crypto prop trading desk (since 2022) focused on arbitrage and news.<br/>We deploy $15M+ in firm capital and are among the fastest on token listing alerts.</p>
@@ -266,8 +266,8 @@
           <span class="meta">2023-02-25 · 6 min</span>
         </li>
         <li>
-          <a href="#" data-post="agents-over-apps" data-title="Agents over apps" data-meta="2025-08-07 · 6 min">Agents over apps</a>
-          <span class="meta">2025-08-07 · 6 min</span>
+          <a href="#" data-post="mev-perp-dex" data-title="MEV and Fairness in Perp DEX Design" data-meta="2023-05-18 · 7 min">MEV and Fairness in Perp DEX Design</a>
+          <span class="meta">2023-05-18 · 7 min</span>
         </li>
         <li>
           <a href="#" data-post="token-incentives" data-title="Designing token incentives that don't break" data-meta="2025-07-03 · 7 min">Designing token incentives that don't break</a>
@@ -363,9 +363,27 @@
       <p>STEPN is less "GameFi with steps" and more a habit engine with incentives and proof of movement. That positioning creates a different user structure, a healthier economy, and a clearer path to mainstream retention.</p>
     </template>
 
-    <template id="tpl-agents-over-apps">
-      <p>Agents aren't apps with chat. They're <em>autonomous workflows</em> with verifiable edges: tools, data, and policy.</p>
-      <p>Ship a boring agent that resolves 1 real ticket/day. Scale later.</p>
+    <template id="tpl-mev-perp-dex">
+      <p>In today's DeFi era, perp DEXs have become a prominent narrative. These platforms let users transition from CEXs to a more decentralized environment, replicating familiar benefits while adding some degree of decentralization.</p>
+      
+      <p>However, most perp DEXs rely on off-chain order books, primarily due to smart contract computational limits. These implementations range from fully centralized matching engines to multiple trusted parties maintaining off-chain books. While this seems like a sensible trade-off—keeping settlement on-chain—it opens up exploitation through MEV.</p>
+      
+      <h3>The Matching Problem</h3>
+      <p>Order matching is fundamental to any exchange. If left in the hands of privileged parties, it's susceptible to exploitation. An off-chain scenario could violate price-time priority, matching an incoming order against a later offer at a worse price. An on-chain order book would inherently match against the best and earliest liquidity.</p>
+      
+      <p>Proposed off-chain solutions often involve social consensus with punishment mechanisms. But these systems are fallible and can be manipulated. The only assured way to ensure fair order books is maintaining the entire state on-chain. This might sound theoretical, but the issue is significant in practice.</p>
+      
+      <h3>MEV Beyond Transaction Ordering</h3>
+      <p>Off-chain order books are vulnerable to MEV at the matching level, not just transaction ordering. This creates an environment where market makers can't quote reasonably, and good liquidity gets monopolized by traders colluding with order book operators. User liquidity suffers.</p>
+      
+      <p>The alternative is running a centralized matching engine with a reputation for fairness. But this contradicts decentralization. If an exchange is inclined to this method, they may as well operate a CEX, sacrificing transparency for most operations.</p>
+      
+      <h3>The Path Forward</h3>
+      <p>Order books must exist on-chain. This mandates infrastructure innovation, but it's necessary to ensure MEV exists only at transaction ordering, not order matching.</p>
+      
+      <p>Building a successful decentralized exchange is complex—from user acquisition to liquidity maintenance. Adding decentralization makes it unsurprising no perp DEX has achieved mass adoption yet. But the landscape could shift within a year.</p>
+      
+      <p>On-chain order books are vital to protect end-users. In my view, the most mature solution currently is off-chain matching with on-chain settlement. For perp DEXs, dYdX is a well-established model that balances these trade-offs.</p>
     </template>
 
     <template id="tpl-token-incentives">
