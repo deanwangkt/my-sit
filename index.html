@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>dean</title>
+  <meta name="description" content="Notes on building — writing and links." />
+  <meta property="og:title" content="dean" />
+  <meta property="og:description" content="Notes on building — writing and links." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌙</text></svg>">
+  <style>
+    /* --- Palette: Graphite (refined, monochrome links) --- */
+    :root {
+      --bg: #0b0d10;              /* warm black, low eye strain */
+      --fg: #e8ebf0;              /* softened white */
+      --muted: #9aa3ae;           /* grey-blue for metadata */
+      --link: #e8ebf0;            /* links now inherit body color for cohesion */
+      --border: #151922;          /* hairline borders */
+      --hairline: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.00));
+      --max: 700px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      color: var(--fg);
+      background:
+        radial-gradient(1200px 700px at 75% -10%, rgba(255,255,255,0.06), rgba(0,0,0,0)), /* top-right glow */
+        radial-gradient(900px 560px at 30% 110%, rgba(255,255,255,0.045), rgba(0,0,0,0) 60%), /* bottom-left balance */
+        var(--bg);
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      min-height: 100svh; /* ensure full viewport coverage */
+    }
+    ::selection { background: rgba(255,255,255,.12); }
+    a {
+      color: var(--link);
+      text-decoration: none; /* default: no underline for calmer look */
+      text-underline-offset: 2px;
+      text-decoration-thickness: .06em;
+    }
+    a:hover { text-decoration: underline; opacity: .96; }
+    a:focus { outline: 1.5px dashed rgba(255,255,255,.35); outline-offset: 2px; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 48px 20px 90px; }
+    header { margin-bottom: 22px; }
+    .name { font-size: 28px; font-weight: 600; margin: 0 0 10px; letter-spacing: .2px; text-transform: lowercase; }
+    .rule { height:1px; background: var(--hairline); margin: 24px 0; }
+    h2 { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 22px 0 10px; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    li { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; gap: 12px; }
+    .meta { color: var(--muted); white-space: nowrap; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 14px; color: var(--muted); }
+    footer { margin-top: 38px; color: var(--muted); font-size: 14px; }
+    .bio p { margin: 8px 0; }
+/* link-like show more */
+    .btn-link { background: none; border: 0; padding: 0; margin-top: 12px; color: var(--link); cursor: pointer; font: inherit; text-decoration: underline; text-underline-offset: 2px; }
+    .btn-link:hover { opacity: .9; }
+    .hidden { display:none; }
+    @media (max-width: 420px){ .meta { display:none; } }
+
+    /* --- Post view (inline article reader) --- */
+    .post-view { margin-top: 8px; }
+    .post-title { font-size: 22px; margin: 0 0 6px; letter-spacing: .2px; }
+    .post-meta { color: var(--muted); margin: 0 0 14px; font-size: 12.5px; }
+    .back { display:inline-block; margin-bottom: 8px; }
+    .prose p { margin: 14px 0; }
+    .prose h3 { font-size: 18px; margin: 18px 0 8px; }
+    .prose ul { list-style: disc; padding-left: 20px; }
+    .prose code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 13px; background: rgba(255,255,255,.06); padding: 1px 4px; border-radius: 4px; }
+  .prose .media { margin: 12px 0; }
+    .prose img { max-width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1 class="name">dean</h1>
+      <div class="bio">
+        <p>I’m a cofounder at a stealth company building agentic AI infra.<br/>Our interface has processed 1T+ tokens, and we collaborate with university labs.</p>
+        <p>Outside AI, I run a crypto prop trading desk (since 2022) focused on arbitrage and news.<br/>We deploy $15M+ in firm capital and are among the fastest on token listing alerts.</p>
+        <p>Previously: UIUC CS. NCSA research assistant in distributed systems. Helped maintain <a href="https://ncsa.illinois.edu/research/project-highlights/blue-waters/" target="_blank" rel="noopener">Blue Waters</a>.</p>
+      </div>
+      <div class="rule"></div>
+    </header>
+
+    <!-- List view -->
+    <section id="writing">
+      <h2>Writing</h2>
+      <ul>
+        <li>
+          <a href="#" data-post="curve-v1-parametric-error" data-title="Share an error in Curve v1’s parametric curves" data-meta="2025-10-01 · 7 min">Share an error in Curve v1’s parametric curves</a>
+          <span class="meta">2025-10-01 · 7 min</span>
+        </li>
+        <li>
+          <a href="#" data-post="leverage" data-title="Leverage, but practical" data-meta="2025-09-12 · 4 min">Leverage, but practical</a>
+          <span class="meta">2025-09-12 · 4 min</span>
+        </li>
+        <li>
+          <a href="#" data-post="agents-over-apps" data-title="Agents over apps" data-meta="2025-08-07 · 6 min">Agents over apps</a>
+          <span class="meta">2025-08-07 · 6 min</span>
+        </li>
+        <li>
+          <a href="#" data-post="token-incentives" data-title="Designing token incentives that don't break" data-meta="2025-07-03 · 7 min">Designing token incentives that don't break</a>
+          <span class="meta">2025-07-03 · 7 min</span>
+        </li>
+        <li class="more hidden">
+          <a href="#" data-post="agents-data" data-title="What data do agents really need?" data-meta="2025-06-10 · 5 min">What data do agents really need?</a>
+          <span class="meta">2025-06-10 · 5 min</span>
+        </li>
+        <li class="more hidden">
+          <a href="#" data-post="agentic-stack" data-title="A practical stack for agentic infra" data-meta="2025-05-18 · 8 min">A practical stack for agentic infra</a>
+          <span class="meta">2025-05-18 · 8 min</span>
+        </li>
+        <li class="more hidden">
+          <a href="#" data-post="incentives-reliability" data-title="On incentives and reliability" data-meta="2025-04-02 · 6 min">On incentives and reliability</a>
+          <span class="meta">2025-04-02 · 6 min</span>
+        </li>
+      </ul>
+      <button id="toggle" class="btn-link" aria-expanded="false" aria-controls="writing">Show more</button>
+    </section>
+
+    <!-- Post view (hidden by default) -->
+    <section id="post" class="post-view hidden" aria-live="polite">
+      <a href="#" id="back" class="mono back">← back</a>
+      <h1 id="post-title" class="post-title"></h1>
+      <p id="post-meta" class="post-meta"></p>
+      <article id="post-content" class="prose"></article>
+      <div class="rule" style="margin-top:24px"></div>
+    </section>
+
+    <!-- Inline post templates: duplicate and edit content only -->
+    <template id="tpl-leverage">
+      <p>Leverage isn’t a meme; it’s a design constraint. The useful version is: <em>small, cheap, compounding units of output</em>.</p>
+      <h3>Practical forms</h3>
+      <ul>
+        <li>Code that runs while you sleep.</li>
+        <li>Content that brings qualified people back.</li>
+        <li>Capital that’s price-insensitive to daily noise.</li>
+      </ul>
+      <p>Pick one, instrument it, let it run for a quarter. Adjust weekly, not daily.</p>
+    </template>
+
+    <template id="tpl-curve-v1-parametric-error">
+      <p><strong>Context.</strong> The public Curve graphics on Desmos show how <em>A</em> shifts the AMM curve (<a href="https://desmos.com/calculator/gpzwdnmaib" target="_blank" rel="noopener">curve v1 and v2</a>). But the constant <em>K</em> there is defined <em>N<sup>N</sup></em> smaller than in the whitepaper, which materially changes the shape (closer to <code>x+y=k</code> only when you multiply by <em>N<sup>N</sup></em>).</p>
+      
+      <p>Video reference: Youtube demo (<a href="https://youtube.com/watch?v=oUqFeJPnq3s" target="_blank" rel="noopener">link</a>). The Desmos definition omits an <em>N<sup>N</sup></em> factor in <em>K</em> compared to the spec:</p>
+      
+      <p><strong>Contract reality.</strong> In implementation, <a href="https://github.com/curvefi/curve-contract/blob/master/contracts/pools/3pool/StableSwap3Pool.vy#L371" target="_blank" rel="noopener">Curve’s Vyper</a> uses <em>N</em> (not <em>N<sup>N</sup></em>) in the relevant update step. Important: the snippet is not the symbolic definition of <em>K</em>, but part of solving for the root of the invariant via Newton’s method.</p>
+      <p><em>Sketch of the derivation.</em> We want to solve the invariant for <em>x_i</em> given <em>D</em> and other balances. Starting with</p>
+      <p>$$ D_0 = \sum_i x_i, \qquad x_{i,0} = D $$</p>
+      <p>Using Newton iteration on a quadratic form in <em>x</em>:</p>
+      <p>$$ x^2 + b\,x = c $$</p>
+      <p>Closed-form update:</p>
+      
+      <p>with <em>b</em>, <em>c</em> computed from the current state (Newton step):</p>
+      
+      <p>where <em>\textstyle \sum'</em> sums all tokens except <em>i</em>, and <em>\textstyle \prod'</em> multiplies all balances except <em>i</em>.</p>
+      
+      <p>So <code>get_y</code> is solving a root, not restating the closed-form constant.</p>
+      <p><strong>Practical note.</strong> If you read off the unbalanced-pool exchange rate from the Desmos curve as-is, you’ll need to multiply <em>A</em> by more than <em>N=2</em> to match behavior. Example: for alETH, using <em>K=\tfrac{2Axy}{D^2}=\tfrac{200xy}{D^2}</em>, the slope hits ≈<code>-1.008</code> around <em>x=0.33D</em>:</p>
+      
+      <p>Desmos sandbox again: <a href="https://desmos.com/calculator/gpzwdnmaib" target="_blank" rel="noopener">gpzwdnmaib</a>.</p>
+    </template>
+
+    <template id="tpl-agents-over-apps">
+      <p>Agents aren’t apps with chat. They’re <em>autonomous workflows</em> with verifiable edges: tools, data, and policy.</p>
+      <p>Ship a boring agent that resolves 1 real ticket/day. Scale later.</p>
+    </template>
+
+    <template id="tpl-token-incentives">
+      <p>Most token designs fail because they subsidize usage without earning <em>retained utility</em>. Start with the unit loop, not the ticker.</p>
+    </template>
+
+    <template id="tpl-agents-data">
+      <p>Agents need <em>reliable</em> signals, not just more data. Latency and freshness beat size in live markets.</p>
+    </template>
+
+    <template id="tpl-agentic-stack">
+      <p>Stack: inference gateway → memory store → tool router → policy layer. Debug with <code>trace_id</code> everywhere.</p>
+    </template>
+
+    <template id="tpl-incentives-reliability">
+      <p>Reliability is an incentive problem. Make failure <em>expensive</em> for the system before it’s expensive for the user.</p>
+    </template>
+
+    <footer>
+      <div class="rule" style="margin-top:28px"></div>
+      <p class="mono">Elsewhere → <a href="https://x.com/deankepler" target="_blank" rel="noopener">Twitter(x)</a>, <a href="https://t.me/deawonii" target="_blank" rel="noopener">Telegram</a></p>
+      <div class="rule"></div>
+      <!-- minimal footer per your request -->
+    </footer>
+  </main>
+  <script>
+    // Show more/less for list view
+    const btn = document.getElementById('toggle');
+    const moreItems = document.querySelectorAll('#writing .more');
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      moreItems.forEach(li => li.classList.toggle('hidden'));
+      btn.setAttribute('aria-expanded', String(!expanded));
+      btn.textContent = expanded ? 'Show more' : 'Show less';
+    });
+
+    // Inline post reader
+    const listView = document.getElementById('writing');
+    const postView = document.getElementById('post');
+    const postTitle = document.getElementById('post-title');
+    const postMeta = document.getElementById('post-meta');
+    const postContent = document.getElementById('post-content');
+    const back = document.getElementById('back');
+
+    function openPost(slug, title, meta){
+      const tpl = document.getElementById('tpl-' + slug);
+      if(!tpl){ return; }
+      postTitle.textContent = title || '';
+      postMeta.textContent = meta || '';
+      postContent.innerHTML = tpl.innerHTML;
+      listView.classList.add('hidden');
+      postView.classList.remove('hidden');
+      history.pushState({view:'post', slug}, '', '#' + slug);
+      window.scrollTo({top:0, behavior:'instant'});
+    }
+    function backToList(){
+      postView.classList.add('hidden');
+      listView.classList.remove('hidden');
+      history.pushState({view:'list'}, '', location.pathname);
+    }
+
+    listView.addEventListener('click', (e)=>{
+      const a = e.target.closest('a[data-post]');
+      if(!a) return;
+      e.preventDefault();
+      openPost(a.dataset.post, a.dataset.title, a.dataset.meta);
+    });
+
+    back.addEventListener('click', (e)=>{ e.preventDefault(); backToList(); });
+
+    // deep-link support: open if hash matches a template id suffix
+    function initFromHash(){
+      const slug = location.hash.replace('#','');
+      if(!slug) return;
+      const anchor = document.querySelector(`[data-post="${slug}"]`);
+      if(anchor){ openPost(slug, anchor.dataset.title, anchor.dataset.meta); }
+    }
+    window.addEventListener('popstate', ()=>{
+      if(location.hash){ initFromHash(); } else { backToList(); }
+    });
+    initFromHash();
+  </script>
+  <!-- MathJax for TeX rendering -->
+  <script>
+    window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$']] }, options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</body>
+</html>
