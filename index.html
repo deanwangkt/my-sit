@@ -83,7 +83,7 @@
       font-size: 38px; 
       font-weight: 700; 
       margin: 0 0 14px; 
-      letter-spacing: -0.03em;
+      letter-spacing: -0.03em; 
     }
     .rule { 
       height: 1px; 
@@ -137,7 +137,7 @@
       color: var(--muted); 
       font-size: 14px; 
     }
-    .bio p { margin: 10px 0; line-height: 1.8; }
+    .bio p { margin: 12px 0; line-height: 1.8; }
     .btn-link { 
       background: none; 
       border: 0; 
@@ -165,7 +165,7 @@
     }
     .post-meta { 
       color: var(--muted); 
-      margin: 0 0 20px; 
+      margin: 0 0 24px; 
       font-size: 12.5px; 
     }
     .back { 
@@ -176,17 +176,17 @@
     .back:hover { opacity: 0.8; }
     
     .prose p { 
-      margin: 16px 0; 
+      margin: 20px 0; 
       font-family: var(--serif); 
     }
     .prose h3 { 
       font-family: var(--sans); 
       font-size: 19px; 
-      margin: 24px 0 12px;
+      margin: 32px 0 14px;
       font-weight: 700;
     }
     .prose ul, .prose ol { 
-      margin: 12px 0;
+      margin: 16px 0;
       padding-left: 24px;
     }
     .prose ul { list-style: disc; }
@@ -247,8 +247,8 @@
       <h1 class="name">Hi, I'm Dean</h1>
       <div class="bio">
         <p>I'm a cofounder at a stealth co. building agentic AI infra.<br/>Our interface has processed 1T+ tokens, and we collaborate with university labs.</p>
-        <p>Outside AI, I run a crypto prop trading desk (since 2022) focused on arbitrage and news.<br/>We deploy $20M+ in firm capital and are among the fastest on token listing alerts.</p>
-        <p>Previously: UIUC CS. NCSA research assistant in distributed systems. Helped maintain <a href="https://ncsa.illinois.edu/research/project-highlights/blue-waters/" target="_blank" rel="noopener">Blue Waters</a>.</p>
+        <p>Outside AI, I run a crypto prop trading desk (since 2022) focused on arbitrage and news.<br/>We deploy $15M+ in firm capital and are among the fastest on token listing alerts.</p>
+        <p>Previously: UIUC CS. <a href="https://en.wikipedia.org/wiki/National_Center_for_Supercomputing_Applications" target="_blank" rel="noopener">NCSA</a> research assistant in distributed systems. Helped maintain <a href="https://ncsa.illinois.edu/research/project-highlights/blue-waters/" target="_blank" rel="noopener">Blue Waters</a>.</p>
       </div>
       <div class="rule"></div>
     </header>
@@ -257,20 +257,20 @@
       <h2>Writing</h2>
       <ul>
         <li>
-          <a href="#" data-post="curve-v1-parametric-error" data-title="Share an error in Curve v1's parametric curves" data-meta="2022-06-15 · 5 min">Share an error in Curve v1's parametric curves</a>
-          <span class="meta">2022-06-15 · 5 min</span>
-        </li>
-        <li>
-          <a href="#" data-post="stepn-mechanics" data-title="The Underlying Mechanics of STEPN's Growth" data-meta="2023-02-25 · 6 min">The Underlying Mechanics of STEPN's Growth</a>
-          <span class="meta">2023-02-25 · 6 min</span>
+          <a href="#" data-post="crypto-valuation-paradox" data-title="On Crypto's Valuation Paradox: My Unfiltered Take" data-meta="2025-05-25 · 8 min">On Crypto's Valuation Paradox: My Unfiltered Take</a>
+          <span class="meta">2025-05-25 · 8 min</span>
         </li>
         <li>
           <a href="#" data-post="mev-perp-dex" data-title="MEV and Fairness in Perp DEX Design" data-meta="2023-05-18 · 7 min">MEV and Fairness in Perp DEX Design</a>
           <span class="meta">2023-05-18 · 7 min</span>
         </li>
         <li>
-          <a href="#" data-post="token-incentives" data-title="Designing token incentives that don't break" data-meta="2025-07-03 · 7 min">Designing token incentives that don't break</a>
-          <span class="meta">2025-07-03 · 7 min</span>
+          <a href="#" data-post="stepn-mechanics" data-title="The Underlying Mechanics of STEPN's Growth" data-meta="2023-02-25 · 6 min">The Underlying Mechanics of STEPN's Growth</a>
+          <span class="meta">2023-02-25 · 6 min</span>
+        </li>
+        <li>
+          <a href="#" data-post="curve-v1-parametric-error" data-title="Share an error in Curve v1's parametric curves" data-meta="2022-06-15 · 5 min">Share an error in Curve v1's parametric curves</a>
+          <span class="meta">2022-06-15 · 5 min</span>
         </li>
         <li class="more hidden">
           <a href="#" data-post="agents-data" data-title="What data do agents really need?" data-meta="2025-06-10 · 5 min">What data do agents really need?</a>
@@ -385,8 +385,32 @@
       <p>On-chain order books are vital to protect end-users. In my view, the most mature solution currently is off-chain matching with on-chain settlement. For perp DEXs, dYdX is a well-established model that balances these trade-offs.</p>
     </template>
 
-    <template id="tpl-token-incentives">
-      <p>Most token designs fail because they subsidize usage without earning <em>retained utility</em>. Start with the unit loop, not the ticker.</p>
+    <template id="tpl-crypto-valuation-paradox">
+      <p>Amidst the market's recent turbulence, many have asked for my current outlook. My core thesis hasn't fundamentally shifted, but I believe this is an opportune moment to articulate my framework for why the vast majority of crypto assets are valued at levels fundamentally disconnected from reality.</p>
+      
+      <p>The principle is remarkably straightforward, yet widely ignored.</p>
+      
+      <h3>The Monetary Premium Reality</h3>
+      <p>Crypto's primary, and arguably its only, widespread product market fit by dollar value has been as an alternative, speculative store of value (SoV). This is the foundational reason why Bitcoin, even after 15 years, maintains its hegemony. Ethereum, since circa 2020, has also cultivated its own potent monetary premium. Combined, these two assets command the lion's share of the market (over 75% excluding stablecoins) and an even greater portion of its liquidity. Legacy tokens like XRP and ADA also persist due to a similar, albeit smaller, demand profile.</p>
+      
+      <p>Over the years, we have been inundated with grand theses for crypto, with doomer theories of imminent global economic collapse being a perennial favorite. Ironically, the global economy has proven exceptionally resilient, continuing its march of growth and productivity. This prosperity, in turn, has fueled greater demand for nonsovereign, alternative stores of value like BTC and ETH. Regardless of the narrative du jour, crypto has consistently ridden the powerful wave of monetary demand.</p>
+      
+      <h3>An Economy Without Productivity</h3>
+      <p>This has birthed a new digital economy, anchored by BTC and ETH. The glaring problem, however, is that this economy is largely devoid of genuine productivity. This is the natural consequence when the overwhelming majority of an asset's value is derived from passive holding and speculation, rather than from generating economic output.</p>
+      
+      <p>And here, speculation becomes the engine of the entire system.</p>
+      
+      <p>You will find a staggering number of tokens (over 70 at last count) boasting valuations north of $1 billion. Many of these are zombie projects that have been around for years, pivoting endlessly without ever achieving meaningful product market fit. New tokens, with patently limited potential for any foreseeable use case, are inflated to multibillion dollar valuations overnight. The result is a market where assets that should, by any fundamental metric, be worth a few million at best are priced in the billions on the infinitesimal chance they might one day be worth something. Hundreds of other tokens, which are self evidently worthless, continue to trade for millions. This is all sustained by a massive speculative premium, a derivative of the industry's SoV backbone.</p>
+      
+      <h3>The Outliers</h3>
+      <p>To be clear, I am not a nihilist. Pockets of genuine innovation and productivity do exist, but they are profound outliers. For instance, projects like Pendle and Curve are personal favorites of mine. Why? Because they have sustainable, real yield revenue models and are designed with positive value accrual incentives for their token holders. Hilariously, these productive assets are often undervalued, even when benchmarked against traditional value stocks, which speaks volumes about the market's priorities.</p>
+      
+      <h3>The Inevitable Fade</h3>
+      <p>So, what is the solution? There is no magic bullet. This is the intrinsic nature of the industry. The dominant strategy has been, and continues to be, to gamble on speculative narratives and rotate profits back into an asset you deem to be a reliable store of value.</p>
+      
+      <p>Of course, every asset has a demand ceiling. We witnessed the end of Bitcoin's exponential growth phase in 2017; its performance since has been modest, barely outpacing the NASDAQ. Diminishing returns are an inevitability. As the market for alternative monetary properties approaches saturation, the momentum will fade. We see this play out in micro cycles constantly. Take the recent narrative around Digital Asset Treasuries (DAT). As the hype cycle fatigues and the story becomes less compelling, you can expect buying pressure to wane significantly. Let's wait and see, but it is a classic pattern. This will eventually trigger a long, slow bleed to near zero for the legion of grotesquely overvalued tokens, a process that will likely take many years of sideways market action to fully play out.</p>
+      
+      <p>In the here and now, however, the crypto market remains what it is: the most extraordinary and utterly unhinged casino the world has ever witnessed, completely detached from reality. And it will likely persist in this state for far longer than any rational mind might expect. The key is to see the game for what it is and play it accordingly.</p>
     </template>
 
     <template id="tpl-agents-data">
