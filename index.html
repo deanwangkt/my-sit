@@ -246,7 +246,7 @@
     <header>
       <h1 class="name">Hi, I'm Dean</h1>
       <div class="bio">
-        <p>I'm a cofounder at a stealth co. building agentic AI infra.<br/>Our interface has processed 1T+ tokens, and we collaborate with university labs.</p>
+        <p>I'm a cofounder at a stealth co. building agentic AI infra.<br/>Our interface has processed 15B+ tokens, and we collaborate with university labs.</p>
         <p>Outside AI, I run a crypto prop trading desk (since 2022) focused on arbitrage and news.<br/>We deploy $15M+ in firm capital and are among the fastest on token listing alerts.</p>
         <p>Previously: UIUC CS. <a href="https://en.wikipedia.org/wiki/National_Center_for_Supercomputing_Applications" target="_blank" rel="noopener">NCSA</a> research assistant in distributed systems. Helped maintain <a href="https://ncsa.illinois.edu/research/project-highlights/blue-waters/" target="_blank" rel="noopener">Blue Waters</a>.</p>
       </div>
@@ -256,6 +256,10 @@
     <section id="writing">
       <h2>Writing</h2>
       <ul>
+        <li>
+          <a href="#" data-post="rethinking-basis-trades" data-title="Rethinking Basis Trades" data-meta="2025-10-06 · 6 min">Rethinking Basis Trades</a>
+          <span class="meta">2025-10-06 · 6 min</span>
+        </li>
         <li>
           <a href="#" data-post="crypto-valuation-paradox" data-title="Zero-Product Economies and Billion-Dollar Tokens" data-meta="2025-05-25 · 8 min">Zero-Product Economies and Billion-Dollar Tokens</a>
           <span class="meta">2025-05-25 · 8 min</span>
@@ -401,16 +405,26 @@
       <p>In the here and now, however, the crypto market remains what it is: the most extraordinary and utterly unhinged casino the world has ever witnessed, completely detached from reality. And it will likely persist in this state for far longer than any rational mind might expect. The key is to see the game for what it is and play it accordingly.</p>
     </template>
 
-    <template id="tpl-agents-data">
-      <p>Agents need <em>reliable</em> signals, not just more data. Latency and freshness beat size in live markets.</p>
-    </template>
-
-    <template id="tpl-agentic-stack">
-      <p>Stack: inference gateway → memory store → tool router → policy layer. Debug with <code>trace_id</code> everywhere.</p>
-    </template>
-
-    <template id="tpl-incentives-reliability">
-      <p>Reliability is an incentive problem. Make failure <em>expensive</em> for the system before it's expensive for the user.</p>
+    <template id="tpl-rethinking-basis-trades">
+      <p>Was just reviewing the market today, and it's wild how completely the crypto game has changed in just a few years. The meta shifts so incredibly fast.</p>
+      
+      <p>Think back to 2021 and before. It was easy mode. The market was flooded with retail longs, which meant you could just sit back and farm those juicy funding fees. Opening a position was a non-issue; I was comfortably running 5x leverage on alts as a default play.</p>
+      
+      <p>Then came 2022. Retail got absolutely farmed and finally learned how to short. So, the smart money adapted. They started pumping obscure, low-cap coins to bait all the new shorts in. Once the trap was set, they'd just keep buying up spot. The perps would trade at a huge discount to spot, and the negative funding would bleed you dry. You simply couldn't hold on.</p>
+      
+      <h3>The 2025 Meta: Hunting Arbitrageurs</h3>
+      <p>Fast forward to now, let's call it '25. Retail is no longer falling for that trick; they know shorting illiquid alts is a death sentence. This created a new problem for the market makers: they lost their counterparty. They had no one left to trade against. So, the game evolved again. The new meta is hunting the arbitrageurs.</p>
+      
+      <p>We've seen it play out. That $PUMPBTC incident was almost certainly a big fund getting blown up for tens of millions on a basis trade. The price doubled in three minutes, and in the next minute, their position was down $40 million. A textbook case of an arb trade getting liquidated, triggering an ADL cascade that lets the house clean up. The moves on $HYPE and $XPL were the same playbook—pure manipulation to blow up arbs. We saw it again last night with $SERAPH on Bybit.</p>
+      
+      <p>I run these small-cap arb trades too, but my risk is managed on a different level. My liquidation price is usually set for a 100x move. It means even if a coin pulls a 10x in a single day, I have more than enough room to breathe.</p>
+      
+      <h3>The Whale Trap</h3>
+      <p>For small capital, it's manageable. If a trade starts to look bad, you just cut it. Simple. But for big money, it's a trap. You can't get out. They are the ones hunting you.</p>
+      
+      <p>Imagine this: you have a $20 million margin account and you open a $1 million arb trade on a small-cap. Your liquidation price seems miles away, maybe at a 20x move. But then they orchestrate one of those violent, 10x pumps in a single day. All of a sudden, the notional value of your position has ballooned to $10 million. In a market this thin, you can't exit a position that size. There's no liquidity to absorb it. The moment you try to de-risk, you'll cause massive slippage against yourself, which only accelerates your own liquidation. You're trapped. And the market makers know it. They are pushing the price with the sole intention of blowing you up.</p>
+      
+      <p style="font-style: italic; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border);">The Basis Trade is Dead: Welcome to the ADL Meta.</p>
     </template>
 
     <footer>
